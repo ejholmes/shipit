@@ -1,0 +1,17 @@
+{
+    "name": "deployalot",
+    "version": "0.0.1",
+    "author": "Eric Holmes",
+
+    "repository" : {
+        "type": "git",
+        "url": "http://github.com/ejholmes/deployalot.git"
+    },
+
+    "dependencies": {
+        "coffee-script": "1.2.0",
+        "jasmine-node": ">= 0.0.1"
+    },
+
+    "main": "./index"
+}
