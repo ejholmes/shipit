@@ -6,7 +6,7 @@ following parameters:
 ```coffeescript
 {
     # The github repo to deploy.
-    "repo": "test",
+    "repo": "github/test",
     # The server environment to deploy to (e.g. production/staging)
     "server": "staging",
     # A command to run. Defaults to:
