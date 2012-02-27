@@ -9,7 +9,8 @@ following parameters:
     "repo": "test",
     # The server environment to deploy to (e.g. production/staging)
     "server": "staging",
-    # A command to run. Defaults to `bundle install --path vendor/gems --binstubs; rake deploy:<server>`
+    # A command to run. Defaults to:
+    # `bundle install --path vendor/gems --binstubs; rake deploy:<server>`
     "command": "echo 'hello world'"
 }
 ```
