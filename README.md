@@ -9,7 +9,7 @@ following parameters:
     "repo": "test",
     # The server environment to deploy to (e.g. production/staging)
     "server": "staging",
-    # A command to run. Defaults to `rake deploy:<server>`
+    # A command to run. Defaults to `bundle install; rake deploy:<server>`
     "command": "echo 'hello world'"
 }
 ```
