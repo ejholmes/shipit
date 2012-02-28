@@ -1,8 +1,8 @@
 # Deployalot
 Deployalot is a Node application for deploying web apps. It listens on port
-8787 by default and watches for post requests to `/deploy`, which accepts the
-following parameters:
+8787 by default and watches for post requests.
 
+**Example payload**
 ```coffeescript
 {
     # The github repo to deploy.
@@ -27,6 +27,16 @@ following parameters:
 
     # A specific SHA to deploy
     "sha": "839e6d2"
+}
+```
+
+If the command completes successfully, HTTP status code 200 is returned, else 500.
+The stdout and stderr of the command is also returned in a JSON structure:
+
+```coffeescript
+{
+    "stdout": "",
+    "stderr": ""
 }
 ```
 
