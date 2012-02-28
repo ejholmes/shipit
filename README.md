@@ -17,7 +17,7 @@ following parameters:
 
     # A command to run. Defaults to:
     # `bundle install --path vendor/gems --binstubs; bundle exec rake deploy:<server>`
-    "command": "echo 'hello world'"
+    "command": "echo 'hello world'",
 
     # A specific branch to deploy
     "branch": "develop",
