@@ -3,6 +3,7 @@ Deployalot is a Node application for deploying web apps. It listens on port
 8787 by default and watches for post requests.
 
 **Example payload**
+
 ```coffeescript
 {
     # The github repo to deploy.
