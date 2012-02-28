@@ -12,11 +12,11 @@ following parameters:
     "server": "staging",
 
     ###################
-    # Option Parameters
+    # Optional Parameters
     ##################
 
     # A command to run. Defaults to:
-    # `bundle install --path vendor/gems --binstubs; rake deploy:<server>`
+    # `bundle install --path vendor/gems --binstubs; bundle exec rake deploy:<server>`
     "command": "echo 'hello world'"
 
     # A specific branch to deploy
