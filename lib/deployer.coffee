@@ -7,7 +7,7 @@ Deployer =
     [path, user, repo] = path.match /(.*)\/(.*)/
     command = opts.command || "bundle install --path vendor/gems --binstubs; bundle exec rake deploy:#{env}"
     ref = "origin/#{opts.branch}" if opts.branch?
-    ref = "#{opts.ref}" if opts.ref?
+    ref = "#{opts.sha}" if opts.sha?
     ref or= "origin/master"
 
     base = process.env.DEPLOYALOT_BASE_DIR || "deploy"
