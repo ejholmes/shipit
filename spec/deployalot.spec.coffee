@@ -11,23 +11,16 @@ Deployer.clone = (path, ref, cb) ->
   fi
   git fetch -q origin
   git reset -q --hard #{ref}
-  """, (error, stdout, stderr) ->
-    cb(error, stdout, stderr)
+  """, (args...) ->
+    cb.apply(null, args)
 
 describe "Deployer", ->
 
   it "resets the working directory", ->
     jasmine.asyncSpecWait()
     cwd = process.cwd()
-    Deployer.deploy 'ejholmes/test', 'staging', { command: 'ls' }, (error, stdout, stderr) ->
+    Deployer.deploy repo: 'ejholmes/test', server: 'staging', command: 'ls', (error, stdout, stderr) ->
       console.log error
       expect(error).toEqual(null)
       expect(process.cwd()).toEqual(cwd)
       jasmine.asyncSpecDone()
-
-  # it "creates the directory structure", ->
-    # jasmine.asyncSpecWait()
-    # Deployer.deploy 'ejholmes/test', 'staging', { command: 'ls' }, (error, stdout, stderr) ->
-      # expect(error).toEqual(null)
-      # expect(fs.statSync('deploy/ejholmes/test')).toBeTruthy()
-      # jasmine.asyncSpecDone()

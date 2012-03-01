@@ -18,15 +18,16 @@ module.exports =
     git reset -q --hard #{ref}
     """, (args...) -> fn.apply(null, args)
 
+  # Executes the deploy command
   command: (command, fn) ->
     exec command, (args...) ->
       process.chdir(root)
       fn.apply(null, args)
 
   # Do the deployment
-  deploy: (path, env, opts = {}, fn) ->
-    [path, user, repo] = path.match /(.*)\/(.*)/
-    command = opts.command || "bundle install --path vendor/gems --binstubs; bundle exec rake deploy:#{env}"
+  deploy: (opts = {}, fn) ->
+    [path, user, repo] = opts.repo.match /(.*)\/(.*)/
+    command = opts.command || "bundle install --path vendor/gems --binstubs; bundle exec rake deploy:#{opts.server}"
     ref = "origin/#{opts.branch}" if opts.branch?
     ref = "#{opts.sha}" if opts.sha?
     ref or= "origin/master"
