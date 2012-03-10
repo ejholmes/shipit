@@ -54,7 +54,18 @@ If the command completes successfully, HTTP status code 200 is returned with the
 }
 ```
 
-Once the job completes, the "notify" servers specified during setup will be notified.
+Once the job completes, the "notify" servers specified during setup will be notified with the following information:
+
+```coffeescript
+{
+    "name": "test",
+    "env": "staging",
+    "job": "someid",
+    "success": true,
+    "stdout": "",
+    "stderr": ""
+}
+```
 
 ## Hubot Integration
 **TODO**
