@@ -10,8 +10,10 @@
 
     "dependencies": {
         "coffee-script": "1.2.0",
-        "jasmine-node": ">= 0.0.1"
+        "jasmine-node": ">= 0.0.1",
+        "express": "2.5.8",
+        "jade": ">= 0.0.1"
     },
 
-    "main": "./index"
+    "main": "./app"
 }
