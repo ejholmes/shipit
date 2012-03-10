@@ -2,7 +2,15 @@
 Module dependencies.
 ###
 
-express = require 'express'
+express   = require 'express'
+Redis     = require('redis')
+client    = Redis.createClient()
+
+Job       = require('./lib/job')
+Repo      = require('./lib/repo')
+
+client.on "error", (err) ->
+  console.log err
 
 app = module.exports = express.createServer()
 
@@ -30,6 +38,17 @@ Routes
 
 app.get '/', (req,res) ->
   res.render 'index', {title: 'Express'}
+
+app.post '/setup', (req, res) ->
+  repo = new Repo(req.params)
+  res.json "done": true
+
+app.get '/deploy/:name/to/:env', (req, res) ->
+  repo = Repo.find(req.params.name)
+  job = new Job()
+  job.run ->
+    console.log "ran job"
+    res.json "job": "someId"
 
 ###
 Only listen on $ node app.js
