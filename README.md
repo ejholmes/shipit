@@ -49,6 +49,7 @@ If the command completes successfully, HTTP status code 200 is returned with the
 
 ```coffeescript
 {
+    "url": "http://localhost:8787/job/someid",
     "name": "test",
     "job": "someid"
 }
