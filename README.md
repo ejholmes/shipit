@@ -2,7 +2,7 @@
 Deployalot is a Node application for deploying web apps.
 
 ## Setup
-Post to `/setup`.
+Send POST to `/setup`.
 
 **Example payload**
 
@@ -21,7 +21,10 @@ Post to `/setup`.
     
     # (Optional) Send post data with stdout, stderr and status code to the url specified when a deployment
     # completes. Multiple servers can be specified by seperating them with spaces
-    "notify": "http://hubot.me.com:8989/ http://something:5555/"
+    "notify": "http://hubot.me.com:8989/ http://something:5555/",
+    
+    # (Optional) Set an SSH key to use when cloning the repository.
+    "ssh_key": "ssh-rsa AAAAB3NzaC1yc2EA...1b+H905D4Bw1bIqM= eric@ejholmes.net"
 }
 ```
 
@@ -34,7 +37,7 @@ Post to `/setup`.
 ```
 
 ## Deploy
-Get to `/deploy/:name/to/:env`.
+Send GET to `/deploy/:name/to/:env`
 
 **Example**
 
