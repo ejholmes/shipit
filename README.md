@@ -58,10 +58,11 @@ Once the job completes, the "notify" servers specified during setup will be noti
 
 ```coffeescript
 {
+    "success": true,
+    "url": "http://localhost:8787/job/someid",
     "name": "test",
     "env": "staging",
     "job": "someid",
-    "success": true,
     "stdout": "",
     "stderr": ""
 }
