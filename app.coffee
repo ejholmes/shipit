@@ -3,11 +3,8 @@ Module dependencies.
 ###
 
 express   = require 'express'
-Redis     = require('redis')
-db    = Redis.createClient()
-
-Job       = require('./lib/job')
-Repo      = require('./lib/repo')
+Redis     = require 'redis'
+db        = Redis.createClient()
 
 db.on "error", (err) ->
   console.log err
@@ -32,23 +29,51 @@ app.configure 'development', ->
 app.configure 'production', ->
   app.use express.errorHandler
 
+repos = [ ]
+
+findRepo = (name) ->
+  for repos in repo
+    return name if repo.name == name
+
 ###
 Routes
 ###
 
-app.get '/', (req,res) ->
-  res.render 'index', {title: 'Express'}
+app.get '/', (req, res) ->
+  res.json
+
+app.get '/repos', (req, res) ->
+  res.json repos
+
+app.get '/repos/:name', (req, res) ->
+  repo = findRepo(req.params.name)
+  res.json repo
+
+app.get '/repos/:name/jobs', (req, res) ->
+  repo = findRepo(req.params.name)
+  res.json repo.jobs || []
+
+app.get '/repos/:name/jobs/:id', (req, res) ->
+  repo = findRepo(req.params.name)
+  res.json repo.jobs[req.params.id]
 
 app.post '/setup', (req, res) ->
-  repo = new Repo(req.params)
-  res.json "done": true
+  repo =
+    repo: req.body.repo
+    name: req.body.name || req.body.repo.replace(/^.*\//, '')
+    command: req.body.command || "bundle install --path vendor/gems --binstubs; bundle exec rake deploy:{{env}}"
+    notify: req.body.notify || ""
+  repos.push repo
+  res.json repo
 
 app.get '/deploy/:name/to/:env', (req, res) ->
-  repo = Repo.find(req.params.name)
-  job = new Job()
-  job.run ->
-    console.log "ran job"
-    res.json "job": "someId"
+  job =
+    success: false
+    stdout: ''
+    stderr: ''
+  # Run job
+  repo = findRepo(req.params.name)
+  res.json
 
 ###
 Only listen on $ node app.js
