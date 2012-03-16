@@ -51,9 +51,9 @@ Returns:
 
 ```coffeescript
 {
-    "url": "http://localhost:8787/job/someid",
+    "url": "http://localhost:8787/job/247",
     "name": "test",
-    "job": "someid"
+    "job": "247"
 }
 ```
 
@@ -62,7 +62,7 @@ Once the job completes, the "notify" servers specified during setup will be noti
 ```coffeescript
 {
     "success": true,
-    "url": "http://localhost:8787/job/someid",
+    "url": "http://localhost:8787/job/247",
     "name": "test",
     "env": "staging",
     "job": "someid",
