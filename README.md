@@ -1,10 +1,15 @@
 # Shipit
 Shipit is a Node application for continuous delivery/deployment.
 
-## Setup
-Send POST to `/setup`.
+## API
 
-**Example payload**
+### Setup
+
+```
+POST /setup
+```
+
+Payload:
 
 ```coffeescript
 {
@@ -25,7 +30,7 @@ Send POST to `/setup`.
 }
 ```
 
-**Returns**
+Returns:
 
 ```coffeescript
 {
@@ -33,16 +38,16 @@ Send POST to `/setup`.
 }
 ```
 
-## Deploy
-Send GET to `/deploy/:name/to/:env`
+### Deploy
+`GET /deploy/:name/to/:env`
 
-**Example**
+Example:
 
 ```bash
 $ curl http://localhost:8787/deploy/test/to/staging
 ```
 
-If the command completes successfully, HTTP status code 200 is returned with the job id.
+Returns:
 
 ```coffeescript
 {
