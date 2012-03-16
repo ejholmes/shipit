@@ -19,8 +19,8 @@ Send POST to `/setup`.
     # {{env}} gets replaced with the value of the "env" key during deploy.
     "command": "echo '{{env}}'",
     
-    # (Optional) Send post data with stdout, stderr and status code to the url specified when a deployment
-    # completes. Multiple servers can be specified by seperating them with spaces
+    # (Optional) Send post data with stdout, stderr and status code to the url specified 
+    # when a job completes. Multiple servers can be specified by seperating them with spaces
     "notify": "http://hubot.me.com:8989/ http://something:5555/"
 }
 ```
