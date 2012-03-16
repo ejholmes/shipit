@@ -1,11 +1,11 @@
 {
-    "name": "deployalot",
+    "name": "shipit",
     "version": "0.0.1",
     "author": "Eric Holmes",
 
     "repository" : {
         "type": "git",
-        "url": "http://github.com/ejholmes/deployalot.git"
+        "url": "http://github.com/ejholmes/shipit.git"
     },
 
     "dependencies": {
