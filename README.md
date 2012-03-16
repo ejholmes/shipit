@@ -57,6 +57,8 @@ Returns:
 }
 ```
 
+### Notifications
+
 Once the job completes, the "notify" servers specified during setup will be notified with the following information:
 
 ```coffeescript
@@ -70,6 +72,3 @@ Once the job completes, the "notify" servers specified during setup will be noti
     "stderr": ""
 }
 ```
-
-## Hubot Integration
-**TODO**
