@@ -1,14 +1,8 @@
-class Job
-  @constructor: (@attrs) ->
+Model = require './model'
 
-  @find: (id) ->
-    # Find the job in redis
-
+class Job extends Model
   run: (callback) ->
     # Run the job
     callback()
-
-  save: ->
-    # Persist attrs in redis
 
 module.exports = Job

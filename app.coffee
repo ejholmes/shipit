@@ -4,12 +4,12 @@ Module dependencies.
 
 express   = require 'express'
 Redis     = require('redis')
-client    = Redis.createClient()
+db    = Redis.createClient()
 
 Job       = require('./lib/job')
 Repo      = require('./lib/repo')
 
-client.on "error", (err) ->
+db.on "error", (err) ->
   console.log err
 
 app = module.exports = express.createServer()
@@ -18,7 +18,7 @@ app = module.exports = express.createServer()
 Configuration
 ###
 
-app.configure -> 
+app.configure ->
   app.set 'views', __dirname + '/views'
   app.set 'view engine', 'jade'
   app.use express.bodyParser()

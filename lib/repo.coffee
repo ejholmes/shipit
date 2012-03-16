@@ -1,10 +1,14 @@
-class Repo
-  @constructor: (@attrs) ->
+Model = require './model'
 
-  @find: (name) ->
-    # Find the repo in redis
+class Repo extends Model
+  @collection = 'repos'
 
-  save: ->
-    # Persist to redis
+  # Persist to redis
+  save: (callback) ->
+    key = "#{@collection}:#{@attrs.name}"
+    @db.hmset "#{@collection}:#{@attrs.name}", @attrs, (err) ->
+      callback(arguments) if err
+      @db.sadd @collection, key, (err) ->
+        callback(arguments)
 
 module.exports = Repo
