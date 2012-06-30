@@ -1,5 +1,3 @@
-require "shipit/version"
+require "active_record"
 
-module Shipit
-  # Your code goes here...
-end
+require "shipit/version"

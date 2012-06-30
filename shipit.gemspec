@@ -19,7 +19,8 @@ Gem::Specification.new do |gem|
   gem.add_dependency "sinatra", "~> 1.3.2"
   gem.add_dependency "thin", "~> 1.3.1"
   gem.add_dependency "activerecord", "~> 3.2.6"
+  gem.add_dependency "delayed_job_active_record", "~> 0.3.2"
 
   gem.add_development_dependency "shotgun", "~> 0.9"
-  gem.add_development_dependency "rspec", "~> 2.10.1"
+  gem.add_development_dependency "rspec", "~> 2.10.0"
 end
