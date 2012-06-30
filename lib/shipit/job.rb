@@ -31,7 +31,21 @@ module Shipit
     end
 
     def deploy
-      
+      system <<-SHELL
+      SHELL
+    end
+
+    # Mocks cloning and deploying
+    def self.enable_mock!
+      self.class_eval do
+        def clone
+          system <<-SHELL
+          rm -rf #{dir}
+          mkdir -p #{File.dirname(dir)}
+          cp -r #{File.expand_path('../../../spec/fixtures/repo', __FILE__)} #{dir}
+          SHELL
+        end
+      end
     end
 
   private

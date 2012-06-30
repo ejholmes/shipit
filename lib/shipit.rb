@@ -38,5 +38,9 @@ module Shipit
         run Shipit::App
       }
     end
+
+    def enable_mock!
+      Job.enable_mock!
+    end
   end
 end

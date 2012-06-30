@@ -1,5 +1,6 @@
 ENV["RACK_ENV"] = "test"
 
+require "rspec"
 require "mocha"
 require "rack/test"
 
@@ -10,8 +11,4 @@ def app
   Shipit.app
 end
 
-RSpec.configure do |config|
-  config.before(:each) do
-    Shipit::Job.any_instance.stubs(:clone).returns(nil)
-  end
-end
+Shipit.enable_mock!
