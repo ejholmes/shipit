@@ -18,7 +18,7 @@ module Shipit
     end
 
     def clone
-      system <<-SHELL
+      Kernel.system <<-SHELL
       mkdir -p #{dir}
       cd #{dir}
       if [ ! -d './.git' ]; then
@@ -31,8 +31,8 @@ module Shipit
     end
 
     def deploy
-      system <<-SHELL
-      cd #{dir}
+      Kernel.system <<-SHELL
+      bundle install
       SHELL
     end
 
@@ -40,7 +40,7 @@ module Shipit
     def self.enable_mock!
       self.class_eval do
         def clone
-          system <<-SHELL
+          Kernel.system <<-SHELL
           rm -rf #{dir}
           mkdir -p #{File.dirname(dir)}
           cp -r #{File.expand_path('../../../spec/fixtures/repo', __FILE__)} #{dir}
