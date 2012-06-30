@@ -32,6 +32,7 @@ module Shipit
 
     def deploy
       system <<-SHELL
+      cd #{dir}
       SHELL
     end
 
