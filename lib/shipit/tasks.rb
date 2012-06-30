@@ -1,7 +1,7 @@
 require "rake"
 require "rake/tasklib"
 
-module Janky
+module Shipit
   module Tasks
     extend Rake::DSL
 
@@ -25,6 +25,14 @@ module Janky
           File.open(path, "w:utf-8") do |fd|
             ActiveRecord::SchemaDumper.dump(ActiveRecord::Base.connection, fd)
           end
+        end
+      end
+
+      namespace :create do
+        desc "Create the databases"
+        task :all do
+          system "mysqladmin -uroot create shipit_development"
+          system "mysqladmin -uroot create shipit_test"
         end
       end
     end
