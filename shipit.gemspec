@@ -25,4 +25,5 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency "rspec", "~> 2.10.0"
   gem.add_development_dependency "mysql2", "~>0.3.0"
   gem.add_development_dependency "rack-test"
+  gem.add_development_dependency "mocha"
 end

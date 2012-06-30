@@ -7,5 +7,9 @@ module Shipit
     post '/setup' do
       Repository.setup(params)
     end
+
+    post '/ship' do
+      Job.start(params)
+    end
   end
 end

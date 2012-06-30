@@ -9,6 +9,7 @@ describe Shipit do
     end
 
     specify { last_response.should be_ok }
+    specify { last_response.body.should eq "ok" }
   end
 
   describe "POST '/setup'" do
@@ -30,6 +31,22 @@ describe Shipit do
         its(:name) { should eq 'shipit' }
         its(:uri)  { should eq 'git@github.com:ejholmes/shipit' }
       end
+    end
+  end
+
+  describe "POST '/ship'" do
+    before do
+      repo
+      post '/ship', post_data
+    end
+
+    context "with valid" do
+      let(:repo) { Shipit::Repository.setup(:repo => "ejholmes/shipit", :name => "shipit") }
+      let(:post_data) do
+        { :name => "shipit", :env => "production" }
+      end
+
+      specify { last_response.should be_ok }
     end
   end
 end

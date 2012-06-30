@@ -5,6 +5,7 @@ require "shipit/version"
 require "shipit/app"
 
 require "shipit/repository"
+require "shipit/job"
 
 module Shipit
   class << self
