@@ -4,6 +4,8 @@ require "sinatra/base"
 require "shipit/version"
 require "shipit/app"
 
+require "shipit/repository"
+
 module Shipit
   class << self
     def setup(settings)
