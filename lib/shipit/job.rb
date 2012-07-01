@@ -3,6 +3,8 @@ module Shipit
     belongs_to :environment
     belongs_to :repository
 
+    delegate :repository, :to => :environment
+
     def self.start(params)
       repo = Repository.find_by_name(params[:name])
       env  = Environment.find_or_create(repo, (params[:env] || "production"))
@@ -37,10 +39,6 @@ module Shipit
         end
       end
       self.save
-    end
-
-    def repository
-      self.environment.repository
     end
 
     # Mocks cloning and deploying
