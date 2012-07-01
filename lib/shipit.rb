@@ -1,5 +1,6 @@
 require "active_record"
 require "sinatra/base"
+require "open3"
 
 require "shipit/version"
 require "shipit/app"

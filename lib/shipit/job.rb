@@ -5,7 +5,7 @@ module Shipit
     def self.start(params)
       repo = Repository.find_by_name(params[:name])
       env = params[:env] || "production"
-      new(:repository => repo, :env => env).tap { |job| job.save }
+      new(:repository => repo, :env => env).tap { |job| job.save }.run
     end
     
     # Runs the deploy
@@ -28,12 +28,14 @@ module Shipit
     end
 
     def deploy
+      self.output = ""
+      command = "cd #{dir}; #{repository.command}"
       Bundler.with_clean_env do
-        Kernel.system <<-SHELL
-        cd #{dir}
-        #{repository.command}
-        SHELL
+        IO.popen(command, :err => [:child, :out]) do |io|
+          io.each { |line| self.output << line }
+        end
       end
+      self.save
     end
 
     # Mocks cloning and deploying
@@ -52,7 +54,7 @@ module Shipit
   private
 
     def dir
-      File.join(File.expand_path(tmpdir), @repo.name)
+      File.join(File.expand_path(tmpdir), repository.name)
     end
 
     def tmpdir

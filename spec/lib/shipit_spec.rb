@@ -52,6 +52,7 @@ describe Shipit do
         subject { Shipit::Job.last }
 
         it { should be_valid }
+        its(:output) { should_not be_nil }
       end
     end
   end
