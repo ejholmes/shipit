@@ -17,7 +17,7 @@ describe Shipit do
       post '/setup', post_data
     end
 
-    context "with valid" do
+    context "with valid data" do
       let(:post_data) do
         { :repo => "ejholmes/shipit", :name => "shipit" }
       end
@@ -40,7 +40,7 @@ describe Shipit do
       post '/ship', post_data
     end
 
-    context "with valid" do
+    context "with valid data" do
       let(:repo) { Shipit::Repository.setup(:repo => "ejholmes/shipit", :name => "shipit") }
       let(:post_data) do
         { :name => "shipit", :env => "production" }
@@ -52,7 +52,28 @@ describe Shipit do
         subject { Shipit::Job.last }
 
         it { should be_valid }
-        its(:output) { should_not be_nil }
+        its(:env) { should eq "production" }
+        its(:output) { should =~ /.*deployed ok.*/}
+      end
+    end
+  end
+
+  pending "POST '/lock'" do
+    before do
+      repo
+      post '/lock', post_data
+    end
+
+    context "with valid data" do
+      let(:repo) { Shipit::Repository.setup(:repo => "ejholmes/shipit", :name => "shipit") }
+      let(:post_data) do
+        { :name => "shipit", :env => "production", :message => "This environment is locked" }
+      end
+
+      describe "the repository" do
+        subject { repo }
+
+        it { should be_locked }
       end
     end
   end
