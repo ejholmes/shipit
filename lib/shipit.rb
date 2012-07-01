@@ -6,6 +6,7 @@ require "shipit/version"
 require "shipit/app"
 
 require "shipit/repository"
+require "shipit/environment"
 require "shipit/job"
 
 module Shipit

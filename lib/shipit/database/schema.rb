@@ -11,14 +11,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120701080236) do
+ActiveRecord::Schema.define(:version => 20120701090245) do
 
-  create_table "jobs", :force => true do |t|
-    t.string   "env"
-    t.string   "output"
+  create_table "environments", :force => true do |t|
+    t.string   "repository_id"
+    t.string   "name"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
-    t.integer  "repository_id"
+  end
+
+  create_table "jobs", :force => true do |t|
+    t.string   "output"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+    t.integer  "environment_id"
   end
 
   create_table "repositories", :force => true do |t|

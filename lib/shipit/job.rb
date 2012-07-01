@@ -1,11 +1,12 @@
 module Shipit
   class Job < ActiveRecord::Base
+    belongs_to :environment
     belongs_to :repository
 
     def self.start(params)
       repo = Repository.find_by_name(params[:name])
-      env = params[:env] || "production"
-      new(:repository => repo, :env => env).tap { |job| job.save }.run
+      env  = Environment.find_or_create(repo, (params[:env] || "production"))
+      new(:environment => env).tap { |job| job.save }.run
     end
     
     # Runs the deploy
@@ -36,6 +37,10 @@ module Shipit
         end
       end
       self.save
+    end
+
+    def repository
+      self.environment.repository
     end
 
     # Mocks cloning and deploying

@@ -51,8 +51,8 @@ describe Shipit do
         subject { Shipit::Job.last }
 
         it { should be_valid }
-        its(:env) { should eq "production" }
         its(:output) { should =~ /.*deployed ok.*/}
+        specify { subject.environment.name.should eq "production" }
       end
     end
   end
