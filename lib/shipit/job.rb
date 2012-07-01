@@ -28,7 +28,6 @@ module Shipit
     end
 
     def deploy
-      self.output = ""
       command = "cd #{dir}; #{repository.command}"
       Bundler.with_clean_env do
         IO.popen(command, :err => [:child, :out]) do |io|
@@ -36,6 +35,10 @@ module Shipit
         end
       end
       self.save
+    end
+
+    def output
+      @output || ""
     end
 
     # Mocks cloning and deploying
