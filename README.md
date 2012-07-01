@@ -25,12 +25,12 @@ How I want to deploy:
 
 ```
 hubot setup github/repo for deployment
-hubot deploy repo/master to production
-hubot deploy repo/feature to staging
-hubot what's on staging?
-hubot lock staging because I'm collecting stats
-hubot why is staging locked?
-hubot unlock staging
+hubot deploy repo/master to production #=> Deploying repo/master to the production environment
+hubot deploy repo/feature to staging #=> Deploying repo/feature to the staging environment
+hubot what's on staging? #=> repo/feature is currently on the staging environment
+hubot lock staging because I'm collecting stats #=> Ok, I've locked the staging environment
+hubot why is staging locked? #=> The staging environment is locked because User is collecting stats
+hubot unlock staging #=> Ok, I've unlocked the staging environment
 ```
 
 ## Contributing
