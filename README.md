@@ -20,6 +20,19 @@ Or install it yourself as:
 
 TODO: Write usage instructions here
 
+## Hubot
+How I want to deploy:
+
+```
+hubot setup github/repo for deployment
+hubot deploy repo/master to production
+hubot deploy repo/feature to staging
+hubot what's on staging?
+hubot lock staging because I'm collecting stats
+hubot why is staging locked?
+hubot unlock staging
+```
+
 ## Contributing
 
 1. Fork it
