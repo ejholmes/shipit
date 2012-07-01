@@ -47,6 +47,12 @@ describe Shipit do
       end
 
       specify { last_response.should be_ok }
+
+      describe "the created job" do
+        subject { Shipit::Job.last }
+
+        it { should be_valid }
+      end
     end
   end
 end

@@ -1,14 +1,11 @@
 module Shipit
-  class Job
+  class Job < ActiveRecord::Base
+    belongs_to :repository
+
     def self.start(params)
       repo = Repository.find_by_name(params[:name])
       env = params[:env] || "production"
-      new(repo, env).run
-    end
-
-    def initialize(repo, env)
-      @repo = repo
-      @env  = env
+      new(:repository => repo, :env => env).tap { |job| job.save }
     end
     
     # Runs the deploy
@@ -23,7 +20,7 @@ module Shipit
       cd #{dir}
       if [ ! -d './.git' ]; then
         git init
-        git remote add origin #{@repo.uri}
+        git remote add origin #{repository.uri}
       fi
       git fetch -q origin
       git reset -q --hard origin/master
@@ -34,7 +31,7 @@ module Shipit
       Bundler.with_clean_env do
         Kernel.system <<-SHELL
         cd #{dir}
-        bundle install
+        #{repository.command}
         SHELL
       end
     end
