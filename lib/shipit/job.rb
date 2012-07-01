@@ -31,9 +31,12 @@ module Shipit
     end
 
     def deploy
-      Kernel.system <<-SHELL
-      bundle install
-      SHELL
+      Bundler.with_clean_env do
+        Kernel.system <<-SHELL
+        cd #{dir}
+        bundle install
+        SHELL
+      end
     end
 
     # Mocks cloning and deploying
