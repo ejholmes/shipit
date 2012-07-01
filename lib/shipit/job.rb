@@ -26,7 +26,7 @@ module Shipit
         git remote add origin #{repository.uri}
       fi
       git fetch -q origin
-      git reset -q --hard origin/master
+      git reset -q --hard origin/#{branch}
       SHELL
     end
 
@@ -38,6 +38,11 @@ module Shipit
         end
       end
       self.save
+    end
+
+    # TODO: Make configurable
+    def branch
+      "master"
     end
 
     def command
