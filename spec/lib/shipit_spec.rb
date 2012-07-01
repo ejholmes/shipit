@@ -36,12 +36,11 @@ describe Shipit do
 
   describe "POST '/ship'" do
     before do
-      repo
       post '/ship', post_data
     end
 
     context "with valid data" do
-      let(:repo) { Shipit::Repository.setup(:repo => "ejholmes/shipit", :name => "shipit") }
+      let!(:repo) { Shipit::Repository.setup(:repo => "ejholmes/shipit", :name => "shipit") }
       let(:post_data) do
         { :name => "shipit", :env => "production" }
       end
@@ -60,12 +59,11 @@ describe Shipit do
 
   pending "POST '/lock'" do
     before do
-      repo
       post '/lock', post_data
     end
 
     context "with valid data" do
-      let(:repo) { Shipit::Repository.setup(:repo => "ejholmes/shipit", :name => "shipit") }
+      let!(:repo) { Shipit::Repository.setup(:repo => "ejholmes/shipit", :name => "shipit") }
       let(:post_data) do
         { :name => "shipit", :env => "production", :message => "This environment is locked" }
       end
