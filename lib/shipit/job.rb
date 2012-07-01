@@ -32,13 +32,20 @@ module Shipit
 
     def deploy
       self.output = ""
-      command = "cd #{dir}; #{repository.command}"
       Bundler.with_clean_env do
         IO.popen(command, :err => [:child, :out]) do |io|
           io.each { |line| self.output << line }
         end
       end
       self.save
+    end
+
+    def command
+      "cd #{dir}; #{command_with_injected_env}"
+    end
+
+    def command_with_injected_env
+      self.repository.command.gsub /{{env}}/, self.environment.name
     end
 
     # Mocks cloning and deploying

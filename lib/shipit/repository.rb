@@ -10,7 +10,7 @@ module Shipit
 
     # TODO: Make configurable
     def command
-      "bundle install --path vendor/gems --binstubs; bundle exec rake deploy"
+      "bundle install --path vendor/gems --binstubs; bundle exec rake {{env}} deploy"
     end
   end
 end

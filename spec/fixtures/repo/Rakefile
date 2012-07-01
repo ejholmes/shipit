@@ -1,3 +1,7 @@
 task :deploy do
   puts "deployed ok"
 end
+
+task :production do
+  puts "deployed ok"
+end
