@@ -41,11 +41,7 @@ module Shipit
     end
 
     def command
-      "cd #{dir}; #{command_with_injected_env}"
-    end
-
-    def command_with_injected_env
-      self.repository.command.gsub /{{env}}/, self.environment.name
+      "cd #{dir}; #{environment.command}"
     end
 
     # Mocks cloning and deploying

@@ -7,5 +7,9 @@ module Shipit
         self.new(:repository => repo, :name => name).tap { |r| r.save }
       end
     end
+
+    def command
+      self.repository.command.gsub /{{env}}/, self.name
+    end
   end
 end
